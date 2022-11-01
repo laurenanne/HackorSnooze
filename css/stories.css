@@ -1,0 +1,97 @@
+/* Lists of stories */
+
+.stories-list {
+  margin: 20px 5px;
+}
+
+.stories-list > li {
+  color: gray;
+  font-size: 0.8rem;
+  margin: 10px 0;
+}
+
+#stories-loading-msg {
+  font-weight: bold;
+  font-size: 150%;
+  margin: 20px 30px;
+}
+
+.stories-list > li:hover {
+  background-color: peachpuff;
+
+} 
+
+/* Individual stories */
+
+.story-link {
+  color: black;
+  font-size: 0.85rem;
+  font-weight: normal;
+  margin: 18px 0;
+}
+
+.story-link:hover {
+  text-decoration: none;
+}
+
+.story-author {
+  margin-left: 2em;
+}
+
+.story-user {
+  display: block;
+}
+
+
+/* Lists of fav */
+.fav-stories {
+  margin: 20px 5px;
+}
+
+.fav-stories > li {
+  color: gray;
+  font-size: 0.8rem;
+  margin: 10px 0;
+}
+
+.fav-stories > li:hover{
+  background-color: peachpuff;
+}
+
+
+/* Individual favorites */
+
+.story-link {
+  color: black;
+  font-size: 0.85rem;
+  font-weight: normal;
+  margin: 18px 0;
+}
+
+.story-link:hover {
+  text-decoration: none;
+}
+
+.story-author {
+  margin-left: 2em;
+}
+
+.story-user {
+  display: block;
+}
+
+
+.highlight-fav {
+  background-color: peachpuff;
+
+}
+
+
+span {
+  margin: 10px 50px;
+  color: black;
+  font-size: 0.85rem;
+  font-weight: normal;
+  text-align: center;
+
+}

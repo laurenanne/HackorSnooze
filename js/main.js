@@ -28,16 +28,6 @@ const $favoritesList = $('<ol id="fav-stories-list" class="fav-stories"></ol>');
 
 $(".stories-container").append($favoritesList);
 
-const $spanAdd = $(
-  "<span class='hidden'> Double Click to Add to Favorites</span><span class='hidden'> Click the Checkbox to Delete a Story</span>"
-);
-$(".stories-container").prepend($spanAdd);
-
-const $spanRemove = $(
-  "<span class='hidden'> Double Click to Remove Favorite</span>"
-);
-$(".stories-container").prepend($spanRemove);
-
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
  * calling this, individual components can re-show just what they want.
@@ -50,8 +40,6 @@ function hidePageComponents() {
     $signupForm,
     $storyForm,
     $favoritesList,
-    $spanAdd,
-    $spanRemove,
   ];
   components.forEach((c) => c.hide());
 }

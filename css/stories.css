@@ -58,6 +58,11 @@
   background-color: peachpuff;
 }
 
+#fav-btn.true{
+  color: red;
+  background-color: pink;
+}
+
 
 /* Individual favorites */
 

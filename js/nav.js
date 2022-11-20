@@ -21,7 +21,6 @@ function navLoginClick(evt) {
   $signupForm.show();
   $navSubmit.show();
   $navFavorites.show();
-  $spanAdd.show();
 }
 
 $navLogin.on("click", navLoginClick);
@@ -38,7 +37,6 @@ function updateNavOnLogin() {
   $allStoriesList.show();
   $navSubmit.show();
   $navFavorites.show();
-  $spanAdd.show();
 }
 
 // Show form on click of button to handle story submission
@@ -76,7 +74,6 @@ $(".account-forms-container").append($storyForm);
 function navFavoritesClick(evt) {
   hidePageComponents();
   $favoritesList.show();
-  $spanRemove.show();
   putFavoritesOnPage();
 }
 

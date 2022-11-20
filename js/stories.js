@@ -21,15 +21,27 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
+
+  // checks to see if the story is on the fav list and if so it adds the class true
+  const favs = currentUser.favorites;
+  let isFavorite = false;
+
+  for (let i = 0; i < favs.length; i++) {
+    if (favs[i].storyId === story.storyId) {
+      isFavorite = !isFavorite;
+    }
+  }
   return $(`
-      <li id="${story.storyId}"><input type="checkbox"/>
+      <li id="${story.storyId}">
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
-      </li>
+        <button id="fav-btn" class = ${isFavorite}>&#x2665;</button>
+        <button id ="del-btn">Delete</button>
+        </li>
     `);
 }
 
@@ -45,7 +57,6 @@ function putStoriesOnPage() {
   }
 
   $allStoriesList.show();
-  $spanAdd.show();
 }
 
 /** Handle story form submission. */
@@ -81,23 +92,24 @@ function putFavoritesOnPage() {
   $favoritesList.show();
 }
 
-// adds stories to the favorite list from the main page
+// adds or removes stories to the favorite list from the main page
 function userFavoritesClick(evt) {
-  $(this).addClass("highlight-fav");
   let username = currentUser.username;
-  let storyId = evt.currentTarget.id;
-  currentUser.addFavorite(username, storyId);
+  let storyId = evt.target.parentElement.id;
+  if (evt.target.classList.contains("true")) {
+    currentUser.removeFavorite(username, storyId);
+  } else {
+    currentUser.addFavorite(username, storyId);
+  }
 }
-$allStoriesList.on("dblclick", "li", userFavoritesClick);
-
-//removes a favorited story from the favorite list
-function removeFavoritesClick(evt) {
-  $(this).removeClass("highlight-fav");
-  let username = currentUser.username;
-  let storyId = evt.currentTarget.id;
-  currentUser.removeFavorite(username, storyId);
-}
-$favoritesList.on("dblclick", "li", removeFavoritesClick);
+//create click event for both buttons
+$allStoriesList.on("click", function (evt) {
+  if (evt.target.id === "fav-btn") {
+    userFavoritesClick(evt);
+  } else {
+    deleteStoryClick(evt);
+  }
+});
 
 //refresh page when adding or removing favorites
 function refreshStories() {
@@ -105,14 +117,6 @@ function refreshStories() {
 }
 
 async function deleteStoryClick(evt) {
-  let storyId = evt.currentTarget.id;
+  let storyId = evt.target.parentElement.id;
   await storyList.deleteStory(storyId);
 }
-
-$allStoriesList.on("click", "li", function (evt) {
-  $("li").each(function () {
-    if ($(this).find("input[type=checkbox]").is(":checked")) {
-      deleteStoryClick(evt);
-    }
-  });
-});
